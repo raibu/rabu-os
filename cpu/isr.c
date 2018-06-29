@@ -12,7 +12,7 @@ isr_t interrupt_handlers[256];
  * ##################################################
  * of course we can do this
  * */
-int isr_array[]= {
+uint isr_array[] = {
 (u32)isr0,
 (u32)isr1,
 (u32)isr2,
@@ -46,9 +46,30 @@ int isr_array[]= {
  (u32)isr30,
  (u32)isr31
 };
+uint irq_array[] = {
+(u32)irq0,
+(u32)irq1,
+(u32)irq2,
+(u32)irq3,
+(u32)irq4,
+(u32)irq5,
+(u32)irq6,
+(u32)irq7,
+(u32)irq8,
+(u32)irq9,
+(u32)irq10,
+(u32)irq11,
+(u32)irq12,
+(u32)irq13,
+(u32)irq14,
+(u32)irq15
+};
+
+
 
 void isr_install() {
-  for(uint i=0; i<32; i++)
+  uint i=0;
+  for(; i<32; i++)
     set_idt_gate(i, isr_array[i]);
 
     port_byte_out(0x20, 0x11);
@@ -62,23 +83,10 @@ void isr_install() {
     port_byte_out(0x21, 0x0);
     port_byte_out(0xA1, 0x0); 
 
-    // Install the IRQs
-    set_idt_gate(32, (u32)irq0);
-    set_idt_gate(33, (u32)irq1);
-    set_idt_gate(34, (u32)irq2);
-    set_idt_gate(35, (u32)irq3);
-    set_idt_gate(36, (u32)irq4);
-    set_idt_gate(37, (u32)irq5);
-    set_idt_gate(38, (u32)irq6);
-    set_idt_gate(39, (u32)irq7);
-    set_idt_gate(40, (u32)irq8);
-    set_idt_gate(41, (u32)irq9);
-    set_idt_gate(42, (u32)irq10);
-    set_idt_gate(43, (u32)irq11);
-    set_idt_gate(44, (u32)irq12);
-    set_idt_gate(45, (u32)irq13);
-    set_idt_gate(46, (u32)irq14);
-    set_idt_gate(47, (u32)irq15);
+    // Install the IRQs 
+    // the same
+    for(;i<48; i++)
+      set_idt_gate(i, irq_array[i-IRQ0]);
 
     set_idt(); // Load with ASM
 }
