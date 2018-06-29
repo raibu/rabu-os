@@ -6,7 +6,7 @@ EXTC=$(wildcard drivers/*.c cpu/*.c libc/*.c)
 
 
 run: image 
-	qemu-system-x86_64 -fda out/os-image.bin -enable-kvm -cpu host,check  &> /dev/null
+	qemu-system-x86_64 -fda out/os-image.bin  
 
 debug: image link
 	qemu-system-i386 -s -S -fda out/os-image.bin &> /dev/null & i386-elf-gdb -ex "target remote localhost:1234" -ex "symbol-file out/kernel.elf"
