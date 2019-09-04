@@ -11,15 +11,15 @@
 print_str16:
 	pusha
 	mov ah, 0x0e
-print16_start:
+.start:
 	mov al, [bx]
 	cmp al, 0
-	je print16_finish
+	je .finish
  	putc16 al
 	inc bx
-	jmp print16_start
+	jmp .start
 
-print16_finish:
+.finish:
 	popa
 	ret
 

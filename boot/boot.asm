@@ -44,8 +44,9 @@ KERNEL_OFFSET equ 0x1000
 ;mov [BOOT_DRIVE], byte 0x80 
 mov bp, 0x9000 ; set the stack safely away from us
 mov sp, bp
-putsn16 MSG_REAL_MODE
 call load_kernel
+mov ax, 13h
+int 10h
 call switch_to_pm
 
 

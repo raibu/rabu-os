@@ -23,7 +23,7 @@ kentry:
 	$(ASM) boot/kentry.asm -f elf -o out/kentry.o -O2
 
 kmain: interrupts
-	$(CC) -g -ffreestanding -c kernel/kmain.c -o out/kmain.o -std=c99 -O2
+	source /home/rabu/.bashrc ;  $(CC) -g -ffreestanding -c kernel/kmain.c -o out/kmain.o -std=c99 -O2
 	$(foreach file, $(EXTC), $(CC) -g -ffreestanding -nostdlib -nostdinc  -fno-builtin-functions -ansi -c $(file) -o ${file:.c=.o} -std=c99 -O2;)
 	
 

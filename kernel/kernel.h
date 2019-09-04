@@ -2,5 +2,5 @@
 #define KERNEL_H
 
 void user_input(char *input);
-
+void next_pixel();
 #endif

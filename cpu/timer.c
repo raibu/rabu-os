@@ -2,11 +2,12 @@
 #include "../drivers/screen.h"
 #include "isr.h"
 #include "../drivers/ports.h"
+#include "../kernel/kernel.h"
 
-u32 tick = 0;
+//u32 tick = 0;
 
 static void timer_callback(registers_t regs) {
-    tick++;
+    next_pixel(); 
     
 }
 
